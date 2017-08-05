@@ -8,5 +8,6 @@ namespace Common
 	{
 		Intro,
 		Test,
+		ShaderTest,
 	}
 }
