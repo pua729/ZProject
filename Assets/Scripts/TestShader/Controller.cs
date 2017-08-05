@@ -29,6 +29,17 @@ public class Controller : MonoBehaviour
 	
 		// ライトを回転
 		light.transform.RotateAround(Vector3.zero, Vector3.up ,Angle * Time.deltaTime);
+
+#if DEBUG
+		if (Input.GetKeyDown(KeyCode.RightArrow))
+		{
+			OnClickRightButton();
+		}
+		if (Input.GetKeyDown(KeyCode.LeftArrow))
+		{
+			OnClickLeftButton();
+		}
+#endif
 	}
 
 	private void UpdateTargetObject(int nextIndex = 0)
@@ -39,8 +50,8 @@ public class Controller : MonoBehaviour
 			_targetObjectIndex = nextIndex;
 			_targetObject = objects[_targetObjectIndex].gameObject;
 			slideArea.transform.position += new Vector3(-1 * _targetObject.transform.position.x, 0, 0);
+			nameText.text = _targetObject.name;
 		}
-		nameText.text = _targetObject.name;
 	}
 
 	private void OnClickRightButton()
