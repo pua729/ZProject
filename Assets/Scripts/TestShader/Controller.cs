@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class Controller : MonoBehaviour
 {
 	public Camera camera;
-	public Light light;
 	public Text nameText;
 	public Button leftButton;
 	public Button rightButton;
@@ -24,12 +23,6 @@ public class Controller : MonoBehaviour
 
 	void Update()
 	{
-		// ライトの一秒当たりの回転角度
-		float Angle = 30f;
-	
-		// ライトを回転
-		light.transform.RotateAround(Vector3.zero, Vector3.up ,Angle * Time.deltaTime);
-
 #if DEBUG
 		if (Input.GetKeyDown(KeyCode.RightArrow))
 		{
@@ -44,7 +37,7 @@ public class Controller : MonoBehaviour
 
 	private void UpdateTargetObject(int nextIndex = 0)
 	{
-		Transform[] objects = slideArea.GetComponentsInChildren<Transform>().Where(c => slideArea != c.gameObject).ToArray();
+		MeshRenderer[] objects = slideArea.GetComponentsInChildren<MeshRenderer>().Where(c => slideArea != c.gameObject).ToArray();
 		if (0 <= nextIndex && nextIndex < objects.Length && objects.ElementAt(nextIndex))
 		{
 			_targetObjectIndex = nextIndex;
